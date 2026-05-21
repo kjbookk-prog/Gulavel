@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InkVerse — Baca Komik & Novel Indie</title>
+  <meta name="description" content="Platform baca komik dan novel indie bebas penerbit. Dukung kreator independen Indonesia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="logo-ink">INK</span><span class="logo-verse">VERSE</span>
+      </a>
+      <div class="nav-search-wrap">
+        <input type="text" class="nav-search" id="navSearch" placeholder="Cari judul, genre, kreator..." autocomplete="off" />
+        <div class="search-results-dropdown" id="searchDropdown"></div>
+      </div>
+      <div class="nav-links">
+        <a href="pages/browse.html" class="nav-link">Jelajah</a>
+        <a href="pages/genres.html" class="nav-link">Genre</a>
+        <div class="nav-link dropdown-trigger" id="typeDropdown">
+          Tipe ▾
+          <div class="dropdown-menu">
+            <a href="pages/browse.html?type=komik" class="dropdown-item">Komik</a>
+            <a href="pages/browse.html?type=novel" class="dropdown-item">Novel</a>
+            <a href="pages/browse.html?type=manga" class="dropdown-item">Manga</a>
+            <a href="pages/browse.html?type=manhwa" class="dropdown-item">Manhwa</a>
+          </div>
+        </div>
+        <a href="pages/upload.html" class="nav-link btn-upload" id="btnUpload" style="display:none">+ Upload</a>
+        <a href="pages/bookmark.html" class="nav-link btn-bookmark" id="btnBookmark" style="display:none">Bookmark</a>
+        <button class="btn-auth" id="btnLogin">Masuk</button>
+        <div class="user-menu" id="userMenu" style="display:none">
+          <img src="" alt="avatar" class="user-avatar" id="userAvatar" />
+          <div class="user-dropdown">
+            <a href="pages/profile.html" class="dropdown-item">Profil</a>
+            <a href="pages/bookmark.html" class="dropdown-item">Bookmark</a>
+            <a href="pages/history.html" class="dropdown-item">Riwayat Baca</a>
+            <a href="pages/upload.html" class="dropdown-item">Upload Konten</a>
+            <hr />
+            <button class="dropdown-item btn-logout" id="btnLogout">Keluar</button>
+          </div>
+        </div>
+      </div>
+      <button class="hamburger" id="hamburger">☰</button>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="pages/browse.html">Jelajah</a>
+      <a href="pages/genres.html">Genre</a>
+      <a href="pages/browse.html?type=komik">Komik</a>
+      <a href="pages/browse.html?type=novel">Novel</a>
+      <a href="pages/upload.html" id="mobileUpload" style="display:none">+ Upload</a>
+      <a href="pages/bookmark.html" id="mobileBookmark" style="display:none">Bookmark</a>
+      <button class="btn-auth" id="mobileBtnLogin">Masuk</button>
+      <button class="btn-logout hidden" id="mobileBtnLogout">Keluar</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-noise"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Platform Kreator Independen</div>
+      <h1 class="hero-title">
+        Cerita tanpa<br />
+        <span class="hero-title-accent">batas penerbit</span>
+      </h1>
+      <p class="hero-desc">Baca dan bagikan komik serta novel karya kreator indie Indonesia. Gratis, bebas, tanpa sponsor.</p>
+      <div class="hero-cta">
+        <a href="pages/browse.html" class="btn-primary">Mulai Membaca</a>
+        <a href="pages/upload.html" class="btn-outline">Upload Karyamu</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" id="statWorks">0</span><span class="stat-label">Karya</span></div>
+        <div class="stat"><span class="stat-num" id="statCreators">0</span><span class="stat-label">Kreator</span></div>
+        <div class="stat"><span class="stat-num" id="statReads">0</span><span class="stat-label">Pembaca</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="floating-card fc1">
+        <div class="fc-cover" style="background: linear-gradient(135deg,#ff6b35,#f7931e)"></div>
+        <div class="fc-info"><div class="fc-title">Saga of Ashes</div><div class="fc-genre">Fantasi</div></div>
+      </div>
+      <div class="floating-card fc2">
+        <div class="fc-cover" style="background: linear-gradient(135deg,#667eea,#764ba2)"></div>
+        <div class="fc-info"><div class="fc-title">Cermin Biru</div><div class="fc-genre">Romance</div></div>
+      </div>
+      <div class="floating-card fc3">
+        <div class="fc-cover" style="background: linear-gradient(135deg,#11998e,#38ef7d)"></div>
+        <div class="fc-info"><div class="fc-title">Last Survivor</div><div class="fc-genre">Aksi</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GENRE STRIP -->
+  <section class="genre-strip">
+    <div class="container">
+      <div class="genre-scroll">
+        <a href="pages/browse.html?genre=aksi" class="genre-chip" data-genre="aksi">⚔️ Aksi</a>
+        <a href="pages/browse.html?genre=fantasi" class="genre-chip" data-genre="fantasi">🔮 Fantasi</a>
+        <a href="pages/browse.html?genre=romance" class="genre-chip" data-genre="romance">💕 Romance</a>
+        <a href="pages/browse.html?genre=isekai" class="genre-chip" data-genre="isekai">🌀 Isekai</a>
+        <a href="pages/browse.html?genre=horror" class="genre-chip" data-genre="horror">👻 Horror</a>
+        <a href="pages/browse.html?genre=slice-of-life" class="genre-chip">🌿 Slice of Life</a>
+        <a href="pages/browse.html?genre=comedy" class="genre-chip">😂 Komedi</a>
+        <a href="pages/browse.html?genre=drama" class="genre-chip">🎭 Drama</a>
+        <a href="pages/browse.html?genre=mystery" class="genre-chip">🔍 Misteri</a>
+        <a href="pages/browse.html?genre=sci-fi" class="genre-chip">🚀 Sci-Fi</a>
+        <a href="pages/browse.html?genre=supernatural" class="genre-chip">✨ Supranatural</a>
+        <a href="pages/browse.html?genre=sports" class="genre-chip">⚽ Olahraga</a>
+        <a href="pages/browse.html?genre=historical" class="genre-chip">🏯 Sejarah</a>
+        <a href="pages/browse.html?genre=school" class="genre-chip">🏫 Sekolah</a>
+        <a href="pages/browse.html?genre=martial-arts" class="genre-chip">🥋 Bela Diri</a>
+        <a href="pages/browse.html?genre=psychological" class="genre-chip">🧠 Psikologi</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST UPDATE -->
+  <section class="section-latest">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Update Terbaru</h2>
+        <a href="pages/browse.html?sort=latest" class="section-link">Lihat semua →</a>
+      </div>
+      <div class="works-grid" id="latestGrid">
+        <div class="work-skeleton"></div>
+        <div class="work-skeleton"></div>
+        <div class="work-skeleton"></div>
+        <div class="work-skeleton"></div>
+        <div class="work-skeleton"></div>
+        <div class="work-skeleton"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RANKING -->
+  <section class="section-ranking">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">🔥 Ranking Minggu Ini</h2>
+        <div class="rank-tabs">
+          <button class="rank-tab active" data-period="weekly">Mingguan</button>
+          <button class="rank-tab" data-period="daily">Harian</button>
+          <button class="rank-tab" data-period="alltime">Sepanjang Masa</button>
+        </div>
+      </div>
+      <div class="ranking-list" id="rankingList">
+        <div class="work-skeleton tall"></div>
+        <div class="work-skeleton tall"></div>
+        <div class="work-skeleton tall"></div>
+        <div class="work-skeleton tall"></div>
+        <div class="work-skeleton tall"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED NOVELS -->
+  <section class="section-novels">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">📖 Novel Pilihan</h2>
+        <a href="pages/browse.html?type=novel" class="section-link">Lihat semua →</a>
+      </div>
+      <div class="novels-grid" id="novelsGrid">
+        <div class="work-skeleton tall"></div>
+        <div class="work-skeleton tall"></div>
+        <div class="work-skeleton tall"></div>
+        <div class="work-skeleton tall"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTINUE READING (Login only) -->
+  <section class="section-continue hidden" id="sectionContinue">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">▶ Lanjut Baca</h2>
+        <a href="pages/history.html" class="section-link">Semua riwayat →</a>
+      </div>
+      <div class="continue-list" id="continueList"></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo"><span class="logo-ink">INK</span><span class="logo-verse">VERSE</span></div>
+          <p>Platform baca komik & novel indie Indonesia. Dukung kreator independen.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link">Twitter</a>
+            <a href="#" class="social-link">Discord</a>
+            <a href="#" class="social-link">Instagram</a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Konten</h4>
+          <a href="pages/browse.html?type=komik">Komik</a>
+          <a href="pages/browse.html?type=novel">Novel</a>
+          <a href="pages/genres.html">Semua Genre</a>
+          <a href="pages/browse.html?sort=popular">Terpopuler</a>
+        </div>
+        <div class="footer-links">
+          <h4>Kreator</h4>
+          <a href="pages/upload.html">Upload Karya</a>
+          <a href="pages/guide.html">Panduan Upload</a>
+          <a href="#">Kebijakan Konten</a>
+        </div>
+        <div class="footer-links">
+          <h4>Platform</h4>
+          <a href="#">Tentang Kami</a>
+          <a href="#">FAQ</a>
+          <a href="#">Kebijakan Privasi</a>
+          <a href="#">Syarat & Ketentuan</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 InkVerse. Dibuat dengan ❤️ untuk kreator Indonesia.</p>
+        <p class="footer-tech">Powered by Supabase · Hosted on GitHub Pages</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- AUTH MODAL -->
+  <div class="modal-overlay" id="authModal">
+    <div class="modal auth-modal">
+      <button class="modal-close" id="closeAuthModal">✕</button>
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">Masuk</button>
+        <button class="auth-tab" data-tab="register">Daftar</button>
+      </div>
+      <!-- LOGIN -->
+      <div class="auth-form" id="formLogin">
+        <h2>Selamat Datang</h2>
+        <p class="auth-sub">Masuk untuk bookmark & riwayat baca</p>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="loginEmail" placeholder="email@kamu.com" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="loginPassword" placeholder="••••••••" />
+        </div>
+        <div class="auth-error hidden" id="loginError"></div>
+        <button class="btn-primary full" id="submitLogin">Masuk</button>
+        <div class="auth-divider">atau</div>
+        <button class="btn-google" id="btnGoogle">
+          <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google" />
+          Masuk dengan Google
+        </button>
+      </div>
+      <!-- REGISTER -->
+      <div class="auth-form hidden" id="formRegister">
+        <h2>Buat Akun</h2>
+        <p class="auth-sub">Bergabung sebagai kreator atau pembaca</p>
+        <div class="form-group">
+          <label>Username</label>
+          <input type="text" id="regUsername" placeholder="username_kamu" />
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="regEmail" placeholder="email@kamu.com" />
+        </div>
+        <div class="form-group">
+          <label>Password</label>
+          <input type="password" id="regPassword" placeholder="Min. 8 karakter" />
+        </div>
+        <div class="form-group">
+          <label>Role</label>
+          <select id="regRole">
+            <option value="reader">Pembaca</option>
+            <option value="creator">Kreator (ingin upload)</option>
+          </select>
+        </div>
+        <div class="auth-error hidden" id="registerError"></div>
+        <button class="btn-primary full" id="submitRegister">Buat Akun</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
